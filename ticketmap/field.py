@@ -62,6 +62,7 @@ class Stop:
                 if s.getSTID()!=self.getSTID():
                     station_links.append((s,l))
         return station_links
+    
     def addLink(self,l):
         print("Adding {link} to {station}".format(link=l,station=self))
         if l in self.links:
@@ -126,8 +127,6 @@ class Link:
             cars=self.cars,
             start=self.stops[0].getName(),
             end=self.stops[1].getName())
-#         stops          len eng  color      tunnel
-#Link( ("",""),  1, 0,  "",    False),
 
 
 #f = Field(stops,links)
