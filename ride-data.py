@@ -189,12 +189,13 @@ class Field:
         # Build List of Links
         self.link_list=[]
         for l in links:
-            self.link_list.append(Link(l))
+            stid,cars,engs,color,mountain = l
+            st = (self.getStopbySTID(stid[0]),self.getStopbySTID(stid[1]))
+            self.link_list.append(Link((st,cars,engs,color,mountain)))
 
         # Populate Stops with Links
         for l in self.link_list:
-            for s in l.stops:
-                st = self.getStopbySTID(s)
+            for st in l.stops:
                 print("Adding {link} to {stop}".format(link=l,stop=st))
                 st.addLink(l)
         num_stat = len(self.stop_list)
@@ -222,13 +223,37 @@ class Stop:
         self.stid = stid
         self.name = codeToCityName(stid)
         pass
+    def getLinkedStops(self):
+        stations = []
+        for l in self.links:
+            for s in l.stops:
+                if s.getSTID()!=self.getSTID():
+                    stations.append(s)
+        return stations
 
+    def getLinkedStopswithLink(self):
+        station_links = []
+        for l in self.links:
+            for s in l.stops:
+                if s.getSTID()!=self.getSTID():
+                    station_links.append((s,l))
+        return station_links
     def addLink(self,l):
         print("Adding {link} to {station}".format(link=l,station=self))
         if l in self.links:
             print("Link Exists")
         else:
             self.links.append(l)
+
+    def getName(self):
+        return self.name
+
+    def getSTID(self):
+        return self.stid
+
+    def getLinks(self):
+        return self.links
+
     def __repr__(self):
         return "<Stop '{self.name}' with {links} links>".format(self=self, links=len(self.links))
 
@@ -240,6 +265,21 @@ class Link:
         self.engines = engines
         self.color = color
         self.mountain = mountain
+        
+    def getStops(self):
+        return self.stops
+
+    def getCars(self):
+        return self.cars
+
+    def getEngines(self):
+        return self.engines
+
+    def getColor(self):
+        return self.color
+
+    def getMountain(self):
+        return self.mountain
     
     def __repr__(self):
         engines=""
@@ -249,7 +289,13 @@ class Link:
         mountains=""
         if self.mountain:
             mountains=" Through Mountains"
-        return "<{color} Route from {start} to {end} {cars} cars long{engines}{mountains}>".format(engines=engines,mountains=mountains,color=self.color.capitalize(),cars=self.cars,start=codeToCityName(self.stops[0]),end=codeToCityName(self.stops[1]))
+        return "<{color} Route from {start} to {end} {cars} cars long{engines}{mountains}>".format(
+            engines=engines,
+            mountains=mountains,
+            color=self.color.capitalize(),
+            cars=self.cars,
+            start=self.stops[0].getName(),
+            end=self.stops[1].getName())
 #         stops          len eng  color      tunnel
 #Link( ("",""),  1, 0,  "",    False),
 
