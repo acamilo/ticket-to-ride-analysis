@@ -1,14 +1,15 @@
-from .europedata import links, stops, tickets
+from .europedata import dataset
 
-def codeToCityName(abvr):
-    return stops[abvr]
 
 class Field:
-    def __init__(self,stops,links):
+    def __init__(self,dataset):
+        print(dataset)
+        stops,links,tickets = dataset
+        self.stops = stops
         # Build List of stops
         self.stop_list=[]
         for s in stops:
-            self.stop_list.append(Stop(s))
+            self.stop_list.append(Stop(s,self.stops[s]))
 
         # Build List of Links
         self.link_list=[]
@@ -42,10 +43,10 @@ class Field:
         return "<Field with {stops} stops and {links} links>".format(stops=len(self.stop_list), links=len(self.link_list))
 
 class Stop:
-    def __init__(self,stid):
+    def __init__(self,stid,name):
         self.links=[]
         self.stid = stid
-        self.name = codeToCityName(stid)
+        self.name = name
         pass
     def getLinkedStops(self):
         stations = []

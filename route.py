@@ -1,3 +1,4 @@
-from ticketmap import field
+from ticketmap.ticketmap import Field
+from ticketmap.europedata import dataset as europedata
 
-print(field.links)
+f = Field(europedata)

@@ -70,6 +70,7 @@ stops = {
     "pete" : "Peterograd"
     }
 
+#     stop tuple     cars engs  color    mountain
 links = [
     [("edin","lond"),  4, 0,  "black",   False],
     [("edin","lond"),  4, 0,  "orange",  False],
@@ -173,3 +174,5 @@ links = [
     [("bucu","sofi"),  2, 0,  "wild",    True ],
 
 ]
+
+dataset = (stops,links,tickets)
