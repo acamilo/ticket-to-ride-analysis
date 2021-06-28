@@ -280,6 +280,12 @@ class Link:
 
     def getMountain(self):
         return self.mountain
+
+    def calculateLinkCost(self):
+        cost += self.getCars()
+        if self.getMountain():
+            cost +=2
+        return cost
     
     def __repr__(self):
         engines=""
