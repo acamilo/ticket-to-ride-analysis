@@ -1,15 +1,22 @@
-from .europedata import dataset
+
 
 
 class Field:
     def __init__(self,dataset):
-        print(dataset)
         stops,links,tickets = dataset
         self.stops = stops
         # Build List of stops
         self.stop_list=[]
+        print("Loading dataset. {stops} stops, {links} links, and {tickets} tickets."
+            .format(
+                stops=len(stops),
+                links = len(links),
+                tickets = len(tickets)
+                ))
         for s in stops:
-            self.stop_list.append(Stop(s,self.stops[s]))
+            st = Stop(s,self.stops[s])
+            print("Adding stop {stop}".format(stop=st))
+            self.stop_list.append(st)
 
         # Build List of Links
         self.link_list=[]
