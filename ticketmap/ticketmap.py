@@ -1,5 +1,5 @@
 
-
+import sys
 
 class Field:
     def __init__(self,dataset):
@@ -45,6 +45,88 @@ class Field:
         for s in self.stop_list:
             if s.name == name:
                 return s
+
+    # Take 2 stops
+    # return array of links
+    def getShortPath(self,source,dest):
+        v_stops = []
+        u_stops = self.stop_list[:] # copy the array, not the objects
+
+        #build hashmap of all verticies
+        verts = {}
+        for s in u_stops:
+            if source==s:
+                print("SRC")
+                verts[s.getSTID()]=[0,None]
+            else:
+                # 
+                verts[s.getSTID()]=[10000,None]
+        
+        
+
+        # loop until all verticies have been visited
+        while len(u_stops) !=0:
+            # fint verts with smallest known distance from start.
+            small_vrt_dst = 10000
+            small_vrt = None
+            for v in verts:
+                cv = self.getStopbySTID(v)
+                if cv in u_stops:
+                    dist,prev=verts[cv.getSTID()]
+                    print("{cv}, {d}".format(cv=cv,d=dist))
+                    if dist<small_vrt_dst:
+                        print("New station with smallest distace from start {v}".format(v=cv))
+                        small_vrt_dst=dist
+                        small_vrt=cv
+            print("Unvisited  Vertex with shortest distance is {vert} with distance {dist}".format(vert=small_vrt,dist=small_vrt_dst))
+            
+            neighbors = small_vrt.getLinkedStopswithLink()
+            print("It has {n} neighbors".format(n=len(neighbors)))
+
+            #Iterate through neighbors
+            for n in neighbors:
+                vert,link=n
+                #Only check unvisited verts
+                if vert in u_stops:
+                    lcost = link.calculateLinkCost()
+                    lcost += small_vrt_dst
+                    print(" {vert} is {cost} from start".format(vert=vert,cost=lcost))
+                    if verts[vert.getSTID()][0]>lcost:
+                        print("Cost of {cost} is lower then {table}".format(cost=lcost,table=verts[vert.getSTID()][0]))
+                        verts[vert.getSTID()][0]=lcost
+                        verts[vert.getSTID()][1]=small_vrt
+            print("Removing {vrt} from unvisited stations.".format(vrt=small_vrt))
+            u_stops.remove(small_vrt)
+            v_stops.append(small_vrt)
+            print("{viz} stationes visited, {uviz} stations left".format(viz=len(v_stops),uviz=len(u_stops)))
+        # We return the cost and breadcrumbs.
+        breadcrumbs=[]
+        crumbs_curr = dest
+        cars_cost = verts[dest.getSTID()][0]
+        while crumbs_curr != source:
+            cost,via = verts[crumbs_curr.getSTID()]
+            for n in crumbs_curr.getLinkedStopswithLink():
+                stop,link = n
+                if stop==via:
+                    breadcrumbs.append(link)
+                    crumbs_curr=stop
+                    break
+                
+        return (cars_cost,breadcrumbs)
+                
+                
+
+
+                        
+
+                        
+            
+        
+
+        
+        # 
+
+
 
     def __repr__(self):
         return "<Field with {stops} stops and {links} links>".format(stops=len(self.stop_list), links=len(self.link_list))
