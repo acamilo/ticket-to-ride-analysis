@@ -15,7 +15,7 @@ class Field:
                 ))
         for s in stops:
             st = Stop(s,self.stops[s])
-            print("Adding stop {stop}".format(stop=st))
+            #print("Adding stop {stop}".format(stop=st))
             self.stop_list.append(st)
 
         # Build List of Links
@@ -28,7 +28,7 @@ class Field:
         # Populate Stops with Links
         for l in self.link_list:
             for st in l.stops:
-                print("Adding {link} to {stop}".format(link=l,stop=st))
+                #print("Adding {link} to {stop}".format(link=l,stop=st))
                 st.addLink(l)
         num_stat = len(self.stop_list)
         self.graph = [[0 for column in range(num_stat)] for row in range(num_stat)] 
