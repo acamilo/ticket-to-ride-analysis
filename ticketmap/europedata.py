@@ -1,12 +1,12 @@
 tickets = [
-("amst","pamp"),("brux","danz"),("kyiv","petr"),("madr","diep"),("pari","madr"),("sofi","kyiv"),
+("amst","pamp"),("brux","danz"),("kyiv","pete"),("madr","diep"),("pari","madr"),("sofi","kyiv"),
 ("amst","rost"),("brux","stoc"),("kyiv","soch"),("madr","roma"),("pari","mosk"),("sofi","smyr"),
 ("amst","vene"),("bucu","erzu"),("lisb","cadi"),("madr","wien"),("pari","roma"),("stoc","wiln"),
 ("amst","wiln"),("buda","sofi"),("lisb","danz"),("madr","zuri"),("pari","seva"),("vene","cons"),
 ("athi","anco"),("cadi","fran"),("lond","anco"),("mars","esse"),("pari","wien"),("vene","wars"),
 ("athi","wiln"),("cadi","stoc"),("lond","athi"),("mosk","anco"),("pari","zagr"),("wars","buda"),
 ("barc","brux"),("danz","buda"),("lond","berl"),("mosk","athi"),("rica","brin"),("wars","seva"),
-("barc","munc"),("diep","kobe"),("lond","madr"),("munc","petr"),("riga","bucu"),("wars","smol"),
+("barc","munc"),("diep","kobe"),("lond","madr"),("munc","pete"),("riga","bucu"),("wars","smol"),
 ("berl","anco"),("diep","mars"),("lond","mosk"),("munc","sara"),("riga","khar"),("wien","anco"),
 ("berl","athi"),("edin","athi"),("lond","pari"),("pale","cons"),("roma","anco"),("wien","athi"),
 ("berl","bucu"),("edin","esse"),("lond","roma"),("pale","mosk"),("roma","athi"),("wien","mosk"),
@@ -14,7 +14,7 @@ tickets = [
 ("berl","roma"),("esse","kyiv"),("lond","wien"),("pamp","pale"),("roma","smyr"),("wien","stoc"),
 ("berl","wien"),("fran","kobe"),("madr","berl"),("pari","anco"),("rost","erzu"),("zagr","brin"),
 ("bres","mars"),("fran","smol"),("madr","mosk"),("pari","athi"),("sara","seva"),("zuri","brin"),
-("bres","petr"),("kobe","erzu"),("madr","anco"),("pari","berl"),("smol","rost"),("zuri","buda"),
+("bres","pete"),("kobe","erzu"),("madr","anco"),("pari","berl"),("smol","rost"),("zuri","buda"),
 ("bres","vene"),("kyiv","pete"),("madr","athi"),("pari","edin"),("soch","smyr")
 ]
 
@@ -58,7 +58,6 @@ stops = {
     "kobe" : "Kobenhavn", 
     "smol" : "Smolensk", 
     "soch" : "Sochi",
-    "petr" : "Petrograd",
     "smyr" : "Smyrna",
     "erzu" : "Erzurum",
     "wiln" : "Wilno",
@@ -135,13 +134,13 @@ links = [
     [("esse","kobe"),  3, 1,  "wild",    False],
     [("kobe","stoc"),  3, 0,  "white",   False],
     [("kobe","stoc"),  3, 0,  "yellow",  False],
-    [("stoc","petr"),  8, 0,  "wild",    True ],
-    [("rica","danz"),  3, 0,  "black",   False],
+    [("stoc","pete"),  8, 0,  "wild",    True ],
+    [("riga","danz"),  3, 0,  "black",   False],
     [("danz","wars"),  2, 0,  "wild",    False],
-    [("wiln","rica"),  4, 0,  "green",   False],
-    [("rica","petr"),  4, 0,  "wild",    False],
-    [("petr","wiln"),  4, 0,  "blue",    False], #nice
-    [("petr","mosk"),  4, 0,  "white",   False],
+    [("wiln","riga"),  4, 0,  "green",   False],
+    [("riga","pete"),  4, 0,  "wild",    False],
+    [("pete","wiln"),  4, 0,  "blue",    False], #nice
+    [("pete","mosk"),  4, 0,  "white",   False],
     [("smol","wiln"),  3, 0,  "yellow",  False],
     [("wiln","wars"),  3, 0,  "red",     False],
     [("wars","kyiv"),  4, 0,  "wild",    False],
