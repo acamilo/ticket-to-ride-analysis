@@ -73,7 +73,7 @@ class Field:
                 cv = self.getStopbySTID(v)
                 if cv in u_stops:
                     dist,prev=verts[cv.getSTID()]
-                    print("{cv}, {d}".format(cv=cv,d=dist))
+                    #print("{cv}, {d}".format(cv=cv,d=dist))
                     if dist<small_vrt_dst:
                         print("New station with smallest distace from start {v}".format(v=cv))
                         small_vrt_dst=dist
