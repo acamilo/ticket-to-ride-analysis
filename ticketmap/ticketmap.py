@@ -56,7 +56,7 @@ class Field:
         verts = {}
         for s in u_stops:
             if source==s:
-                print("SRC")
+                #print("SRC")
                 verts[s.getSTID()]=[0,None]
             else:
                 # 
@@ -75,13 +75,13 @@ class Field:
                     dist,prev=verts[cv.getSTID()]
                     #print("{cv}, {d}".format(cv=cv,d=dist))
                     if dist<small_vrt_dst:
-                        print("New station with smallest distace from start {v}".format(v=cv))
+                        #print("New station with smallest distace from start {v}".format(v=cv))
                         small_vrt_dst=dist
                         small_vrt=cv
-            print("Unvisited  Vertex with shortest distance is {vert} with distance {dist}".format(vert=small_vrt,dist=small_vrt_dst))
+            #print("Unvisited  Vertex with shortest distance is {vert} with distance {dist}".format(vert=small_vrt,dist=small_vrt_dst))
             
             neighbors = small_vrt.getLinkedStopswithLink()
-            print("It has {n} neighbors".format(n=len(neighbors)))
+            #print("It has {n} neighbors".format(n=len(neighbors)))
 
             #Iterate through neighbors
             for n in neighbors:
@@ -90,15 +90,15 @@ class Field:
                 if vert in u_stops:
                     lcost = link.calculateLinkCost()
                     lcost += small_vrt_dst
-                    print(" {vert} is {cost} from start".format(vert=vert,cost=lcost))
+                    #print(" {vert} is {cost} from start".format(vert=vert,cost=lcost))
                     if verts[vert.getSTID()][0]>lcost:
-                        print("Cost of {cost} is lower then {table}".format(cost=lcost,table=verts[vert.getSTID()][0]))
+                        #print("Cost of {cost} is lower then {table}".format(cost=lcost,table=verts[vert.getSTID()][0]))
                         verts[vert.getSTID()][0]=lcost
                         verts[vert.getSTID()][1]=small_vrt
-            print("Removing {vrt} from unvisited stations.".format(vrt=small_vrt))
+            #print("Removing {vrt} from unvisited stations.".format(vrt=small_vrt))
             u_stops.remove(small_vrt)
             v_stops.append(small_vrt)
-            print("{viz} stationes visited, {uviz} stations left".format(viz=len(v_stops),uviz=len(u_stops)))
+            #print("{viz} stationes visited, {uviz} stations left".format(viz=len(v_stops),uviz=len(u_stops)))
         # We return the cost and breadcrumbs.
         breadcrumbs=[]
         crumbs_curr = dest
