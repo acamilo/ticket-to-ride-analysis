@@ -140,9 +140,10 @@ class Stop:
         return station_links
     
     def addLink(self,l):
-        print("Adding {link} to {station}".format(link=l,station=self))
+        #print("Adding {link} to {station}".format(link=l,station=self))
         if l in self.links:
-            print("Link Exists")
+            pass
+            #print("Link Exists")
         else:
             self.links.append(l)
 
