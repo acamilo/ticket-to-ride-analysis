@@ -62,7 +62,7 @@ stops = {
     "erzu" : "Erzurum",
     "wiln" : "Wilno",
     "seva" : "Sevastopol",
-    "cons" : "Constantanople",
+    "cons" : "Constantinople",
     "anco" : "Angora",
     "brin" : "Brindisi",
     "khar" : "Kharkov",
