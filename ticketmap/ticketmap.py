@@ -113,20 +113,6 @@ class Field:
                     break
                 
         return (cars_cost,breadcrumbs)
-                
-                
-
-
-                        
-
-                        
-            
-        
-
-        
-        # 
-
-
 
     def __repr__(self):
         return "<Field with {stops} stops and {links} links>".format(stops=len(self.stop_list), links=len(self.link_list))
